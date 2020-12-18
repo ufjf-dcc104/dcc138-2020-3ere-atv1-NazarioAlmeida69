@@ -11,8 +11,12 @@
     <p>por Ricardo Souza(2020)</p>
     <script>
         let canvas = document.querySelector("canvas");
+        let ctx = canvas.getContext("2d");
         canvas.height=320;
         canvas.width=480;
+
+        ctx.fillStyle = "black";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
     </script>
 </body>
 </html>
