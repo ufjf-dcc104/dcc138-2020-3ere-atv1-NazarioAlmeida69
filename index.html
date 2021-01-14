@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DCC138 e.xemple01</title>
+    <title>DCC138 exemple01</title>
 </head>
 <body>
-    <h1>DCC138 e.xemple01</h1>
+    <h1>DCC138 exemple01</h1>
     <canvas></canvas>
     <p>por Ricardo Souza(2020)</p>
     <script>
@@ -22,6 +22,10 @@
             y : 100,
             vy : 0,
             ay : 0,
+            desenhar: function() {
+                ctx.fillStyle = "white";
+                ctx.fillRect(this.x, this.y, 20, 20);
+            }
         };
 
         let e = {
@@ -31,6 +35,10 @@
             y : 200,
             vy : 0,
             ay : 0,
+            desenhar: function() {
+                ctx.fillStyle = "red";
+                ctx.fillRect(this.x, this.y, 20, 20);
+            }
         };
 
         const K = 180;
@@ -63,11 +71,8 @@
             e.y = e.y + e.vy * dt;
 
             //Desenha elementos
-            ctx.fillStyle = "white";
-            ctx.fillRect(p.x, p.y, 20, 20);
-
-            ctx.fillStyle = "red";
-            ctx.fillRect(e.x, e.y, 20, 20);
+            p.desenhar();
+            e.desenhar();
 
             requestAnimationFrame(desenha);
             t0 = t;
@@ -103,19 +108,15 @@
             switch (event.key)
             {
                 case "ArrowUp":
-                    p.vy = 0;
                     p.ay = 0;
                     break;
                 case "ArrowDown":
-                    p.vy = 0;
                     p.ay = 0;
                     break;
                 case "ArrowLeft":
-                    p.vx = 0;
                     p.ax = 0;
                     break;
                 case "ArrowRight":
-                    p.vx = 0;
                     p.ax = 0;
                     break;
             }
