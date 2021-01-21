@@ -24,6 +24,8 @@
             y : 100,
             vy : 0,
             ay : 0,
+            w: 40,
+            h: 15,
             cor: "white",
             desenhar: desenharElemento,
             mover: moverElemento
@@ -38,6 +40,8 @@
                 y : canvas.height * Math.random(),
                 vy : 0,
                 ay : 0,
+                w: 15,
+                h: 15,
                 cor : "red",
                 desenhar: desenharElemento,
                 mover: moverElemento,
@@ -54,6 +58,8 @@
             vy : 0,
             ay : 0,
             cor: "blue",
+            w: 5,
+            h: 5,
             desenhar: desenharElemento,
             mover: moverElemento,
             controlar: function () {
@@ -82,7 +88,6 @@
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             p.mover();
-            p.desenhar();
             for (let s = 0; s < sprites.length; s++)
             {
                 const sprite = sprites[s];
@@ -93,7 +98,7 @@
                 sprite.mover?.();
                 //Desenha elementos
                 sprite.desenhar();
-
+                
                 if(colidiram(o, sprite) && o !== sprite)
                 {
                     o.x = -1000;
@@ -105,7 +110,7 @@
                     sprite.ax = 0;
                     pontos++;
                 }
-
+                
                 if(colidiram(p, sprite) && o !== sprite)
                 {
                     sprite.x = 1000;
@@ -114,6 +119,7 @@
                     pontos -= 3;
                 }
             }
+            p.desenhar();
 
             ctx.fillStyle = "yellow";
             ctx.font = "20px Impact";
@@ -134,7 +140,7 @@
         function desenharElemento()
         {
             ctx.fillStyle = this.cor;
-            ctx.fillRect(this.x, this.y, 20, 20);
+            ctx.fillRect(this.x, this.y, this.w, this.h);
         }
         
         function perseguirAlvo(alvo)
@@ -204,7 +210,7 @@
         function colidiram(A, B)
         {
             return! (
-                (A.x > B.x + 20) || (A.x + 20 < B.x) || (A.y > B.y + 20)  || (A.y + 20 < B.y)
+                (A.x > B.x + B.w) || (A.x + A.w < B.x) || (A.y > B.y + B.h)  || (A.y + A.h < B.y)
             )
         }
         
